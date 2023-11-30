@@ -37,6 +37,7 @@ public class MunicipalityTaxesRepository implements TaxesRepository {
         .map(
             entity -> {
               var requestEntity = conversionService.convert(municipalityTax, TaxEntity.class);
+              requestEntity.setMunicipality(entity.getMunicipality());
               assert requestEntity != null;
               taxesJpaRepository.save(requestEntity);
               return 1;
