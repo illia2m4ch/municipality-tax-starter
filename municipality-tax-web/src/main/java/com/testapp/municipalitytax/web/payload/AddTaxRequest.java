@@ -1,5 +1,6 @@
 package com.testapp.municipalitytax.web.payload;
 
+import com.testapp.municipalitytax.web.validation.date.DatePattern;
 import com.testapp.municipalitytax.web.validation.enumvalue.EnumValue;
 
 import javax.validation.constraints.NotBlank;
@@ -11,7 +12,7 @@ public record AddTaxRequest(
     String municipality,
     @Positive(message = "Tax must be positive")
     Double tax,
-    // TODO write custom validator for date yyyy.MM.dd
+    @DatePattern(pattern = "yyyy.MM.dd")
     String startDate,
     @NotBlank(message = "Specify schedule")
     @EnumValue(anyOf = {"YEARLY", "MONTHLY", "WEEKLY", "DAILY"}, message = "Invalid schedule value")
