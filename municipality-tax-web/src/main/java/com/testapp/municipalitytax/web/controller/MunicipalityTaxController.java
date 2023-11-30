@@ -3,11 +3,10 @@ package com.testapp.municipalitytax.web.controller;
 import com.testapp.municipalitytax.web.TaxesService;
 import com.testapp.municipalitytax.web.payload.*;
 import java.util.UUID;
+import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/taxes")

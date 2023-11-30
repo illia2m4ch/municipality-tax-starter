@@ -108,7 +108,9 @@ public class MunicipalityTaxServiceUnitTest {
     // then
     verify(taxesRepository, times(1)).findByMunicipalityAndDate(municipality, date);
     verify(conversionService, times(1))
-        .convert(Collections.singletonList(TestDataFactory.createSavedMunicipalityTax()), TaxResponse.class);
+        .convert(
+            Collections.singletonList(TestDataFactory.createSavedMunicipalityTax()),
+            TaxResponse.class);
     assertThat(response).isEqualTo(mockedResponse);
   }
 
