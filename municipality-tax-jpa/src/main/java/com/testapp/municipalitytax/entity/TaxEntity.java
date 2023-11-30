@@ -3,15 +3,13 @@ package com.testapp.municipalitytax.entity;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "taxes")
 public class TaxEntity {
   @Id
+  @GeneratedValue
   @Column(name = "id", nullable = false)
   UUID id;
 
