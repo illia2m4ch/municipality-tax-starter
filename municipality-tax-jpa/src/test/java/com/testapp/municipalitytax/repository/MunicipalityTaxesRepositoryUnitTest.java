@@ -103,6 +103,8 @@ public class MunicipalityTaxesRepositoryUnitTest {
     TaxEntity entity = TestDataFactory.createTaxEntity();
     List<MunicipalityTax> expected =
         Collections.singletonList(TestDataFactory.createSavedMunicipalityTax());
+    when(conversionService.convert(any(TaxEntity.class), eq(MunicipalityTax.class)))
+        .thenReturn(TestDataFactory.createSavedMunicipalityTax());
     when(taxesJpaRepository.findAll(any(Predicate.class)))
         .thenReturn(Collections.singletonList(entity));
 

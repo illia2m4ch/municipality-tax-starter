@@ -12,6 +12,7 @@ public class MunicipalityTaxListToTaxResponseConverter
 
   @Override
   public TaxResponse convert(List<MunicipalityTax> source) {
-    throw new UnsupportedOperationException();
+    var taxes = source.stream().map(MunicipalityTax::tax).toList();
+    return new TaxResponse(taxes);
   }
 }

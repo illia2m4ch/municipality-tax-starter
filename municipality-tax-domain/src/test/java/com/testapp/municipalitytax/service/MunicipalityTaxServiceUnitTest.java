@@ -12,6 +12,7 @@ import com.testapp.municipalitytax.domain.TaxesRepository;
 import com.testapp.municipalitytax.web.payload.*;
 import java.time.LocalDate;
 import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
 import org.junit.Before;
 import org.junit.Test;
@@ -96,6 +97,8 @@ public class MunicipalityTaxServiceUnitTest {
     String stringDate = TestDataFactory.stringDate;
     LocalDate date = TestDataFactory.date;
     TaxResponse mockedResponse = TestDataFactory.createTaxResponse();
+    when(conversionService.convert(any(List.class), eq(TaxResponse.class)))
+        .thenReturn(mockedResponse);
     when(taxesRepository.findByMunicipalityAndDate(anyString(), any(LocalDate.class)))
         .thenReturn(Collections.singletonList(TestDataFactory.createSavedMunicipalityTax()));
 
@@ -104,6 +107,8 @@ public class MunicipalityTaxServiceUnitTest {
 
     // then
     verify(taxesRepository, times(1)).findByMunicipalityAndDate(municipality, date);
+    verify(conversionService, times(1))
+        .convert(Collections.singletonList(TestDataFactory.createSavedMunicipalityTax()), TaxResponse.class);
     assertThat(response).isEqualTo(mockedResponse);
   }
 

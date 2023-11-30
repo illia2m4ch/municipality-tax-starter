@@ -10,6 +10,11 @@ public class MunicipalityTaxToFullTaxInfoConverter
     implements Converter<MunicipalityTax, FullTaxInfo> {
   @Override
   public FullTaxInfo convert(MunicipalityTax source) {
-    throw new UnsupportedOperationException();
+    return new FullTaxInfo(
+        source.id(),
+        source.municipality(),
+        source.tax(),
+        source.startDate(),
+        source.taxSchedule().name());
   }
 }
