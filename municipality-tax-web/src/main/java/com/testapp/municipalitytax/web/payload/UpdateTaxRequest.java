@@ -1,3 +1,15 @@
 package com.testapp.municipalitytax.web.payload;
 
-public record UpdateTaxRequest(Double tax, String startDate, String schedule) {}
+import com.testapp.municipalitytax.web.validation.enumvalue.EnumValue;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
+
+public record UpdateTaxRequest(
+    @Positive(message = "Tax must be positive")
+    Double tax,
+    String startDate,
+    @NotBlank(message = "Specify schedule")
+    @EnumValue(anyOf = {"YEARLY", "MONTHLY", "WEEKLY", "DAILY"}, message = "Invalid schedule value")
+    String schedule
+) {}

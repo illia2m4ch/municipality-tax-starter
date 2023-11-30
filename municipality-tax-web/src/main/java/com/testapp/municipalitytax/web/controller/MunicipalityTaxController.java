@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/taxes")
 @Validated
@@ -28,7 +30,7 @@ public class MunicipalityTaxController {
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   @ResponseBody
-  UUIDResponse addMunicipalityTax(@RequestBody AddTaxRequest addTaxRequest) {
+  UUIDResponse addMunicipalityTax(@Valid @RequestBody AddTaxRequest addTaxRequest) {
     return taxesService.addTax(addTaxRequest);
   }
 
@@ -44,7 +46,7 @@ public class MunicipalityTaxController {
   @ResponseStatus(HttpStatus.OK)
   @ResponseBody
   void updateMunicipalityTax(
-      @PathVariable("taxId") UUID taxId, @RequestBody UpdateTaxRequest updateTaxRequest) {
+      @PathVariable("taxId") UUID taxId, @Valid @RequestBody UpdateTaxRequest updateTaxRequest) {
     taxesService.updateTax(taxId, updateTaxRequest);
   }
 
